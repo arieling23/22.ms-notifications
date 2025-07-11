@@ -33,7 +33,7 @@
 
   <service name="NotificationService">
     <port name="NotificationPort" binding="tns:NotificationBinding">
-      <soap:address location="http://localhost:4000/wsdl"/>
+      <soap:address location="http://34.231.222.249:4000/wsdl"/>
     </port>
   </service>
 </definitions>

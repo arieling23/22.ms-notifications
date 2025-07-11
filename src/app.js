@@ -28,7 +28,7 @@ connectDB();
 const server = http.createServer(app);
 server.listen(4000, () => {
   soap.listen(server, '/wsdl', notificationService, wsdl);
-  console.log('📡 SOAP listo en http://localhost:4000/wsdl');
+  console.log('📡 SOAP listo en http://34.231.222.249:4000/wsdl');
 
   // ✅ Iniciar consumidor de eventos cuando el servidor esté listo
   startConsumer();
