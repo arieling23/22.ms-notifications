@@ -1,0 +1,39 @@
+<definitions name="NotificationService"
+  targetNamespace="http://example.com/notifications"
+  xmlns:tns="http://example.com/notifications"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+  <message name="SendNotificationRequest">
+    <part name="email" type="xsd:string"/>
+    <part name="subject" type="xsd:string"/>
+    <part name="message" type="xsd:string"/>
+  </message>
+
+  <message name="SendNotificationResponse">
+    <part name="success" type="xsd:boolean"/>
+  </message>
+
+  <portType name="NotificationPortType">
+    <operation name="SendNotification">
+      <input message="tns:SendNotificationRequest"/>
+      <output message="tns:SendNotificationResponse"/>
+    </operation>
+  </portType>
+
+  <binding name="NotificationBinding" type="tns:NotificationPortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="SendNotification">
+      <soap:operation soapAction="SendNotification"/>
+      <input><soap:body use="literal"/></input>
+      <output><soap:body use="literal"/></output>
+    </operation>
+  </binding>
+
+  <service name="NotificationService">
+    <port name="NotificationPort" binding="tns:NotificationBinding">
+      <soap:address location="http://localhost:4000/wsdl"/>
+    </port>
+  </service>
+</definitions>
