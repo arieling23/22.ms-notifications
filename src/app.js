@@ -10,7 +10,7 @@ const fs = require('fs');
 const path = require('path');
 const http = require('http');
 const notificationService = require('./soap/notificationService');
-const { startConsumer } = require('./events/consumer'); // ✅ importar consumidor
+const { startConsumer } = require('./events/consumer'); 
 
 // ✅ Leer archivo WSDL con ruta absoluta segura
 const wsdl = fs.readFileSync(path.join(__dirname, 'soap', 'notificationService.wsdl'), 'utf8');

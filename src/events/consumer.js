@@ -10,7 +10,7 @@ async function startConsumer() {
     await channel.assertExchange(exchange, 'fanout', { durable: false });
 
     const queue = 'notifications';
-    await channel.assertQueue(queue, { durable: true }); // 👈 durable: true
+    await channel.assertQueue(queue, { durable: true }); 
 
     await channel.bindQueue(queue, exchange, ''); // fanout no necesita routing key
 
