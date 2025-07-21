@@ -6,13 +6,13 @@ async function startConsumer() {
     const conn = await amqp.connect(process.env.RABBITMQ_URL);
     const channel = await conn.createChannel();
 
-    const exchange = 'events'; // 👈 Mismo que el publisher
+    const exchange = 'events'; 
     await channel.assertExchange(exchange, 'fanout', { durable: false });
 
     const queue = 'notifications';
     await channel.assertQueue(queue, { durable: true }); 
 
-    await channel.bindQueue(queue, exchange, ''); // fanout no necesita routing key
+    await channel.bindQueue(queue, exchange, ''); 
 
     console.log('📥 Escuchando eventos en RabbitMQ');
 
@@ -23,7 +23,7 @@ async function startConsumer() {
 
         const { event, data } = payload;
 
-        // Verificamos si es un evento de recuperación
+       
         if (event === 'password.recovery.requested') {
           const { email, token } = data;
 

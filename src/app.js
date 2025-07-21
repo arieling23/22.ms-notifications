@@ -12,7 +12,7 @@ const http = require('http');
 const notificationService = require('./soap/notificationService');
 const { startConsumer } = require('./events/consumer'); 
 
-// ✅ Leer archivo WSDL con ruta absoluta segura
+
 const wsdl = fs.readFileSync(path.join(__dirname, 'soap', 'notificationService.wsdl'), 'utf8');
 
 const app = express();
@@ -24,12 +24,12 @@ app.get('/api/notifications', verifyJWT, getNotifications);
 
 connectDB();
 
-// SOAP Server
+
 const server = http.createServer(app);
 server.listen(4000, () => {
   soap.listen(server, '/wsdl', notificationService, wsdl);
   console.log('📡 SOAP listo en http://34.231.222.249:4000/wsdl');
 
-  // ✅ Iniciar consumidor de eventos cuando el servidor esté listo
+  
   startConsumer();
 });

@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
 
 async function send(email, message, subject) {
   try {
-    // Enviar el correo
+    
     await transporter.sendMail({
       from: `"Soporte" <${process.env.EMAIL_USER}>`,
       to: email,
@@ -21,7 +21,7 @@ async function send(email, message, subject) {
       text: message,
     });
 
-    // Guardar en MongoDB como notificación registrada
+    
     const notif = new Notification({ email, subject, message });
     await notif.save();
 
